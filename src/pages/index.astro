@@ -1,9 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+
+
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Hello Leo">
 	<main>
 		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
 		<p class="instructions">
@@ -35,11 +37,14 @@ import Card from '../components/Card.astro';
 	</main>
 </Layout>
 
-<style>
+<style lang="scss" scoped>
 	main {
 		margin: auto;
 		padding: 1.5rem;
 		max-width: 60ch;
+		.test {
+			color: red;
+		}
 	}
 	h1 {
 		font-size: 3rem;
