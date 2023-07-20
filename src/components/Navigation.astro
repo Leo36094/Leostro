@@ -1,0 +1,19 @@
+---
+---
+
+<nav class="nav">
+  <a class="nav__link" href="/">Home</a>
+  <a class="nav__link" href="/about">About</a>
+  <a class="nav__link" href="/blog">Blog</a>
+</nav>
+<style lang="scss">
+  .nav {
+    display: flex;
+    align-items: center;
+    &__link {
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+    }
+  }
+</style>

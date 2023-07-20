@@ -1,26 +1,50 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
+import '../styles/global.scss';
+import Layout from "../layouts/Layout.astro";
+const pageTitle = "About Me";
+const identity = {
+  firstName: 'Leo',
+  country: 'Taiwan',
+  lastName: 'Chuang',
+  occupation: 'Software Engineer',
+  hobbies: ['Snowboarding', 'Hiking', 'Basketball', 'Gaming']
+}
+const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Vue', 'Astro', 'Cypress']
+const skillColor = 'navy';
 ---
 
-<Layout title="Hello Leo">
-  <main>
-    
-		<h1>About page</h1>
-	</main>
+<Layout title={pageTitle}>
+  <main class="about">
+    <h1>{pageTitle}</h1>
+    <p>Here are a few facts about me:</p>
+    <ul>
+      <li>My name is {identity.firstName}.</li>
+      <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
+      {identity.hobbies.length >= 2 &&
+        <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
+      }
+    </ul>
+    <p>My skills are:</p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+  </main>
 </Layout>
 
-<style lang="scss">
-  
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	
+<style lang="scss" define:vars={{skillColor}}>
+  .about {
+    main {
+      margin: auto;
+      padding: 1.5rem;
+      max-width: 60ch;
+    }
+    h1 {
+      color: purple;
+      font-size: 4rem;
+    }
+    .skill {
+      color: var(--skillColor);
+      font-weight: bold;
+    }
+  }
 </style>
