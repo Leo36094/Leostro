@@ -1,0 +1,23 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Tag from "@/components/Tag.astro";
+const allPosts = await Astro.glob("../posts/*.md");
+const tags = Array.from(
+  new Set(allPosts.flatMap((post) => post.frontmatter.tags))
+);
+
+const pageTitle = "Tag index";
+---
+
+<Layout title={pageTitle}>
+  <div class="tags">
+    {tags.map((tag) => <Tag tag={tag} />)}
+  </div>
+</Layout>
+<style>
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+</style>
