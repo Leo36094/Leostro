@@ -1,15 +1,18 @@
 ---
-import type { MarkdownContent } from "astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import BlogPost from "@/components/BlogPost.astro";
 import Layout from "@layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const posts = await Astro.glob("../posts/*.md");
-  const uniqueTags = new Set(posts.flatMap((post) => post.frontmatter.tags));
-  
-  return Array.from(uniqueTags).map((tag) => {
+  const posts = await getCollection("posts");
+  const uniqueTags = [
+    ...new Set(posts.map((post) => post.data.tags).flat()),
+  ];
+
+  return uniqueTags.map((tag) => {
     const filteredPosts = posts.filter((post) =>
-      post.frontmatter.tags?.includes(tag)
+      post.data.tags.includes(tag)
     );
     return {
       params: { tag },
@@ -17,20 +20,24 @@ export async function getStaticPaths() {
     };
   });
 }
-interface Props {
-  posts: Array<MarkdownContent>;
+
+type Props = {
+  posts: CollectionEntry<'posts'>[];
 }
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<Layout title={tag || ""}>
+<Layout title={tag}>
   <p>Posts tagged with {tag}</p>
   <ul>
     {
       posts.map((post) => (
-        <BlogPost url={post.url} title={post.frontmatter.title} />
+        <BlogPost
+          url={`/posts/${post.slug}`}
+          title={post.data.title}
+        />
       ))
     }
   </ul>

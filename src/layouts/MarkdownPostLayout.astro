@@ -1,25 +1,11 @@
 ---
-import type { MarkdownLayoutProps } from "astro";
 import Layout from "@layouts/Layout.astro";
-import Tag from "@/components/Tag.astro";
-type Props = MarkdownLayoutProps<{
-  title: string;
-  description: string;
-  url: string;
-  author: string;
-  pubDate: string;
-  image: {
-    url: string;
-    alt: string;
-  };
-  tags: string[];
-}>;
-
+// import Tag from "@/components/Tag.astro";
 const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title}>
-  <p>{frontmatter.pubDate.slice(0, 10)}</p>
+  <p>{frontmatter.pubDate.toDateString()}</p>
   <p><em>{frontmatter.description}</em></p>
   <p>Written by: {frontmatter.author}</p>
   <img
@@ -27,9 +13,9 @@ const { frontmatter } = Astro.props;
     width="300"
     alt={frontmatter.image.alt}
   />
-  <div class="tags">
+  <!-- <div class="tags">
     {frontmatter.tags.map((tag) => <Tag tag={tag} />)}
-  </div>
+  </div> -->
 
   <slot />
 </Layout>

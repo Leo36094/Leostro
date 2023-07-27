@@ -1,5 +1,5 @@
 ---
-layout: '../../layouts/MarkdownPostLayout.astro'
+# layout: '../../layouts/MarkdownPostLayout.astro'
 title: My Third Blog Post
 pubDate: 2023-07-26
 description: "I had some challenges, but asking in the community really helped!"
