@@ -6,6 +6,12 @@ import ThemeIcon from "./ThemeIcon.astro";
 
 <header>
   <Hamburger />
-  <ThemeIcon />
   <Navigation />
+  <ThemeIcon />
 </header>
+
+<style lang="scss">
+  header {
+    @include flexCenter(row);
+  }
+</style>

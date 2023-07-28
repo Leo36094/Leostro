@@ -1,0 +1,93 @@
+/* media query */
+@mixin queryMaxWidth($width) {
+  @media only screen and (max-width: #{$width}px) {
+    @content;
+  }
+}
+
+@mixin queryMinWidth($width) {
+  @media only screen and (min-width: #{$width}px) {
+    @content;
+  }
+}
+@mixin queryLandscape {
+  @media screen and (max-width: 750px) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin setHTML {
+  font-size: 100px;
+
+  @include queryMaxWidth(#{$queryLG}) {
+    font-size: calc(100vw / #{$queryLG} * 100);
+  }
+  @include queryMaxWidth(#{$querySM}) {
+    font-size: calc(100vw / #{$querySM} * 100);
+  }
+  @include queryLandscape {
+    font-size: calc(100vw / #{$queryLG} * 100);
+  }
+}
+
+/* ellipsis */
+@mixin ellipsis($e: n) {
+  overflow: hidden;
+  white-space: nowrap;
+  @if $e == e {
+    text-overflow: ellipsis;
+  }
+}
+@mixin ellipsis-line($line) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: $line; /* rows*/
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+}
+
+/* fullscreen background */
+@mixin fullscreenBg($url) {
+  background: url('#{$url}') center / 100% auto no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+/* full size */
+@mixin fullsize() {
+  width: 100%;
+  height: 100%;
+}
+
+/* full cover */
+@mixin fullcover() {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+
+@function zIndex($key) {
+  @return map-get($z-index, $key);
+}
+@mixin z-index($key) {
+  z-index: zIndex($key);
+}
+@mixin centerBg($size: contain) {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: $size;
+}
+
+

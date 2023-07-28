@@ -1,6 +1,10 @@
 html {
-  background-color: #f1f5f9;
+  --theme-background: #f1f5f9;
+  background-color: var(--theme-background);
   font-family: sans-serif;
+  @media (preferred-color-scheme: dark) {
+    --theme-background: #0d0950;
+  }
   &.dark {
     background-color: #0d0950;
     color: #fff;

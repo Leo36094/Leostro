@@ -1,0 +1,18 @@
+/* media query */
+$queryLG: 1334; // PC : > $queryMD & freeze in $queryLG
+$queryMD: 1080; // PAD : $querySM ~ $queryMD
+$querySM: 750; // Mobile : < $querySM
+
+$z-index: (
+  layer: 1,
+  text: 2,
+  element: 3,
+  nav: 9,
+  toast: 10,
+  modal: 11,
+  loading: 12,
+);
+
+$color-white: #eaeaea;
+$color-strong: #EF9666;
+$color-strong-light: #CB957C;

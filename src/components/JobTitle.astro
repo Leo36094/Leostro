@@ -1,0 +1,43 @@
+---
+type Props = {
+  titleInfo: {
+    title: string;
+    experience: string;
+  }[];
+};
+
+const { titleInfo } = Astro.props;
+---
+
+<div class="title-row">
+  {
+    titleInfo.map((info) => (
+      <p class="title-row__description">
+        {info.title}
+        <span class="title-experience">{info.experience}</span>
+      </p>
+    ))
+  }
+</div>
+
+<style lang="scss">
+  .title-row {
+    font-weight: 600;
+    margin-top: 0.2rem;
+    margin-bottom: 0.08rem;
+    padding-bottom: 0.08rem;
+    color: $color-strong;
+    &__description {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .title-experience {
+      font-size: 0.12rem;
+      font-style: italic;
+      @include queryMinWidth($querySM) {
+        font-size: 0.2rem;
+      }
+    }
+  }
+</style>
